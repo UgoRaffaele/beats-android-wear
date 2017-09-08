@@ -1,0 +1,5 @@
+<inset
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_current_beat"
+    android:insetTop="@dimen/icon_inset_padding"
+    android:insetBottom="@dimen/icon_inset_padding" />

@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="chart_margin">24dp</dimen>
+
+</resources>

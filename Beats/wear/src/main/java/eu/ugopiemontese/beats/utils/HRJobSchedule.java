@@ -9,8 +9,8 @@ import eu.ugopiemontese.beats.HRJobService;
 
 public class HRJobSchedule {
 
-    // Schedule the job every 30 minutes
-    private final static long DELAY = 30;
+    // Schedule the job every 60 minutes
+    private final static long DELAY = 60;
 
     public static void scheduleJob(Context context) {
         ComponentName serviceComponent = new ComponentName(context, HRJobService.class);
