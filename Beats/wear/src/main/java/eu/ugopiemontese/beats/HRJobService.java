@@ -1,20 +1,18 @@
 package eu.ugopiemontese.beats;
 
 import android.Manifest;
-import android.app.job.JobParameters;
+import android.util.Log;
+import android.os.Handler;
 import android.app.job.JobService;
+import android.app.job.JobParameters;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
+import android.hardware.SensorEventListener;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
+import eu.ugopiemontese.beats.orm.Beat;
 import eu.ugopiemontese.beats.utils.PermissionHelper;
 
 import static android.hardware.SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM;
@@ -69,28 +67,16 @@ public class HRJobService extends JobService implements SensorEventListener {
         return false;
     }
 
-    private String currentTimeStr() {
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        return df.format(c.getTime());
-    }
-
     @Override
     public void onSensorChanged(SensorEvent event) {
 
         if ((event.sensor.getType() == Sensor.TYPE_HEART_RATE) && (event.values.length > 0)) {
-
             for (float value: event.values) {
-
-                String msg = currentTimeStr() + " " + (int) value;
-                Log.d(TAG, msg);
-
                 if (event.accuracy >= SENSOR_STATUS_ACCURACY_MEDIUM) {
-                   // TODO : record value into DB
+                    Beat mBeat = new Beat(System.currentTimeMillis(), (int) value, event.accuracy);
+                    mBeat.save();
                 }
-
             }
-
         } else {
             Log.d(TAG, "Unknown sensor type!");
         }

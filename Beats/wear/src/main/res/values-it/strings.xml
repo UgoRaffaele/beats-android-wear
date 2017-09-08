@@ -2,8 +2,8 @@
 
     <string name="app_name">Beats</string>
 
-    <string name="notify_perm_title">Beats requires some permissions</string>
-    <string name="notify_perm_body">Touch to accept or deny</string>
+    <string name="notify_perm_title">Beats richiede permessi necessari</string>
+    <string name="notify_perm_body">Tocca per consentire o negare</string>
 
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>

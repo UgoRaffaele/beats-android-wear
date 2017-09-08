@@ -4,7 +4,7 @@ A continuous, standalone Heart Rate Monitor app for Android Wear.
 
 ## Motivation
 
-I needed a standalone app to periodically check my heart rate, possibly integrated with Google Fit (TBD) to store data.
+I needed a standalone app to periodically check my heart rate and store data in a DB for later examination.
 
 ## License
 

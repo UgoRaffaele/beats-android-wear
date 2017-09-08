@@ -2,13 +2,23 @@ package eu.ugopiemontese.beats;
 
 import android.Manifest;
 import android.util.Log;
-import android.app.Application;
+import com.orm.SugarApp;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 
-public class BeatsApplication extends Application implements OnRequestPermissionsResultCallback {
+public class BeatsApplication extends SugarApp implements OnRequestPermissionsResultCallback {
 
     private static final String TAG = BeatsApplication.class.getSimpleName();
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
