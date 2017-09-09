@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
         chart = (LineChart) findViewById(R.id.chart);
 
         chart.setDescription(null);
+        chart.setTouchEnabled(false);
         chart.getLegend().setEnabled(false);
 
         chart.getXAxis().setDrawLabels(true);
@@ -36,8 +37,11 @@ public class MainActivity extends Activity {
         chart.getXAxis().setDrawAxisLine(false);
         chart.getXAxis().setDrawGridLines(false);
 
-        chart.getAxisLeft().setEnabled(false);
-        chart.getAxisLeft().setDrawLabels(false);
+        chart.getAxisLeft().setEnabled(true);
+        chart.getAxisLeft().setDrawLabels(true);
+        chart.getAxisLeft().setDrawGridLines(true);
+        chart.getAxisLeft().setDrawAxisLine(false);
+        chart.getAxisLeft().setTextColor(getColor(R.color.white));
 
         chart.getAxisRight().setEnabled(false);
         chart.getAxisRight().setDrawLabels(false);
@@ -51,17 +55,21 @@ public class MainActivity extends Activity {
                 .list();
 
         for (Beat mBeat: mBeats) {
-
             entries.add(new Entry(mBeat.getMillis(), mBeat.getValue()));
-
         }
 
         LineDataSet dataSet = new LineDataSet(entries, getString(R.string.app_name));
+
         dataSet.setCircleRadius(3f);
         dataSet.setDrawCircleHole(false);
+
+        dataSet.setCubicIntensity(0.1f);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
         dataSet.setColor(getColor(R.color.red));
         dataSet.setCircleColor(getColor(R.color.red));
-        dataSet.setValueTextColor(getColor(R.color.white));
+
+        dataSet.setDrawValues(false);
 
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
